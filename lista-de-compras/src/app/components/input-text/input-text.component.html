@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="conteiner-input">
+    <label for="">{{ label }}</label>
+    <div class="input">
+      <div class="input-text">
+        <input
+          type="{{ type }}"
+          name="{{name}}"
+          placeholder="{{ placeholder }}"
+          id="text"
+          [ngClass]="name == 'password' ? 'input-password': ''"
+        />
+        <mat-icon class="icon-input" *ngIf="iconInput" (click)="changeVisibility()">{{
+          iconInput
+        }}</mat-icon>
+      </div>
+      <mat-icon class="icon">{{ icon }}</mat-icon>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  // background-color: rgb(11, 125, 255);
+  // color: #fafafa;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  border: 1px solid rgb(11, 125, 255);
+  font-size: 16px;
+
+  &.primary{
+    background-color: rgb(11, 125, 255);
+    color: #fafafa;
+  }
+
+  &.secondary{
+    background-color: transparent;
+    color: rgb(11, 125, 255);
+  }
+
+}
+
+button:hover{
+  cursor: pointer;
+
+
+}
