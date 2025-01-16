@@ -46,9 +46,13 @@
           box-sizing: 1px 5px;
         }
 
-      .input-password{
-        padding-right: 30px;
-      }
+        .invalidInput{
+          border: 1px solid rgb(204, 0, 0);
+        }
+
+        .input-password{
+          padding-right: 30px;
+        }
 
         .icon-input{
           display: flex;

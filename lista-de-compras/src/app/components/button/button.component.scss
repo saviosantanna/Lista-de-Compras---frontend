@@ -27,5 +27,15 @@ button{
 button:hover{
   cursor: pointer;
 
+  &.primary{
+    background-color: rgb(0, 73, 156);
+    color: #fafafa;
+  }
+
+  &.secondary{
+    background-color: rgba(11, 125, 255, 0.1);
+    border-color: rgb(0, 73, 156);
+    color: rgb(0, 73, 156);
+  }
 
 }

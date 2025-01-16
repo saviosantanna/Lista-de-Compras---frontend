@@ -7,8 +7,8 @@
           type="{{ type }}"
           name="{{name}}"
           placeholder="{{ placeholder }}"
-          id="text"
-          [ngClass]="name == 'password' ? 'input-password': ''"
+          [ngClass]="[name == 'password' ? 'input-password': '', !isValid ? 'invalidInput' : '']"
+          (input)="input($event)"
         />
         <mat-icon class="icon-input" *ngIf="iconInput" (click)="changeVisibility()">{{
           iconInput

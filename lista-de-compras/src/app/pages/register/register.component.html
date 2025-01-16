@@ -1,0 +1,66 @@
+<section class="container">
+  <img src="../../../assets/shopping-list-2.png" alt="" />
+  <h2>Bem-vindo(a)</h2>
+  <form [formGroup]="formRegister">
+    <app-input-text
+      label="Usuário"
+      formControlName="user"
+      name="user"
+      placeholder="Digite seu usuário"
+      icon="person"
+      type="text"
+      [isValid]="userIsValid"
+    ></app-input-text>
+    <app-input-text
+      label="Nome"
+      formControlName="name"
+      name="name"
+      placeholder="Digite seu nome"
+      icon="text_fields"
+      type="text"
+      [isValid]="nameIsValid"
+    ></app-input-text>
+    <app-input-text
+      label="Email"
+      formControlName="email"
+      name="email"
+      placeholder="Digite seu email"
+      icon="email"
+      type="email"
+      [isValid]="emailIsValid"
+    ></app-input-text>
+    <app-input-text
+      label="Senha"
+      formControlName="password"
+      name="password"
+      placeholder="Digite sua senha"
+      icon="key"
+      iconInput="visibility_off"
+      type="password"
+      [isValid]=passwordIsValid
+    ></app-input-text>
+    <app-input-text
+      label="Confirmação de Senha"
+      formControlName="passwordConfirm"
+      name="password"
+      placeholder="Confirme sua senha"
+      icon="key"
+      iconInput="visibility_off"
+      type="password"
+      [isValid]=passwordIsValid
+    ></app-input-text>
+
+      <p *ngIf="!userIsValid">- Usuário inválido, deve conter no mínimo 4 caracteres.</p>
+      <p *ngIf="!nameIsValid">- Nome inválido, deve conter no mínimo 4 caracteres.</p>
+      <p *ngIf="!emailIsValid">- Email inválido.</p>
+      <p *ngIf="!passwordIsValid">- A senha deve ter pelo menos 6 caracteres, possuir letra maiúscula, letra minúscula, número e caractere especial.</p>
+      <p *ngIf="!passwordIsDifferent">- As senhas digitadas são diferentes.</p>
+      <p *ngIf="formIsValid">Cadastro realizado com sucesso!</p>
+
+  </form>
+  <div class="btns">
+    <app-button text="Registrar" btnClass="primary" (click)="register()"> </app-button>
+    <app-button text="Voltar" btnClass="secondary" (click)="voltar()"> </app-button>
+  </div>
+</section>
+<!-- <app-spinner></app-spinner> -->
