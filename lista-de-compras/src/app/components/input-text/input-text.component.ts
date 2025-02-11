@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  Output,
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-input-text',
   standalone: true,
-  imports: [
-    MatIconModule,
-    MatInputModule,
-    CommonModule
-  ],
+  imports: [MatIconModule, MatInputModule, CommonModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -20,27 +22,38 @@ import {MatInputModule} from '@angular/material/input';
     },
   ],
   templateUrl: './input-text.component.html',
-  styleUrl: './input-text.component.scss'
+  styleUrl: './input-text.component.scss',
 })
-export class InputTextComponent implements ControlValueAccessor{
+export class InputTextComponent implements ControlValueAccessor {
   constructor() {}
 
   value: string = '';
-  onChange: any = () => {};
+  onChange: any = (value: string) => {};
   onTouched: any = () => {};
+  @Output() pressEnter:  EventEmitter<boolean> = new EventEmitter();
 
-  input(e: Event){
-    this.onChange((e.target as HTMLInputElement).value);
+  onInput(e: Event) {
+    let input = (e.target as HTMLInputElement).value;
+    this.value = input;
+    this.onChange(input);
+  }
+
+  keyPress(e: KeyboardEvent){
+    if(e.key == "Enter"){
+      this.pressEnter.emit(true);
+      console.log("CLick enter")
+    }
   }
 
   writeValue(obj: any): void {
-    this.value = obj;
+    this.value = obj || '';
   }
+
   registerOnChange(fn: any): void {
-    this.onChange = fn
+    this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
-    this.onTouched = fn
+    this.onTouched = fn;
   }
 
   @Input() label: string = '';
@@ -51,18 +64,16 @@ export class InputTextComponent implements ControlValueAccessor{
   @Input() name: string = '';
   @Input() isValid!: boolean;
 
-  changeVisibility(){
-    console.log("Valor do iconInput: " + this.iconInput)
-    console.log("Valor isValid: " + this.isValid)
-    // console.log("Valor valor: " + this.valor)
+  changeVisibility() {
+    console.log('Valor do iconInput: ' + this.iconInput);
+    console.log('Valor isValid: ' + this.isValid);
 
-    if(this.iconInput == "visibility_off"){
-      this.type = "text"
-      this.iconInput = "visibility"
+    if (this.iconInput == 'visibility_off') {
+      this.type = 'text';
+      this.iconInput = 'visibility';
     } else {
-      this.type = "password"
-      this.iconInput = "visibility_off"
+      this.type = 'password';
+      this.iconInput = 'visibility_off';
     }
   }
-
 }

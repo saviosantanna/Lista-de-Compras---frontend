@@ -25,10 +25,21 @@
     width: 100%;
   }
 
+  .wrong-pass{
+    color: red;
+    width: 100%;
+  }
+
   .forgot{
     text-align: right;
     color: rgb(17, 17, 180);
-    width: 100%;
+    // width: 100%;
+    align-self: self-end;
+  }
+
+  .forgot:hover{
+    cursor: pointer;
+    color: rgb(0, 73, 156);;
   }
 
   .lines{

@@ -4,12 +4,12 @@
   <form [formGroup]="formLogin">
     <app-input-text
       label="Usuário"
-      formControlName="name"
+      formControlName="user"
       name="user"
       placeholder="Digite seu usuário"
       icon="person"
       type="text"
-      [isValid]="isValid"
+      [isValid]="userIsValid"
     ></app-input-text>
     <app-input-text
       label="Senha"
@@ -19,10 +19,12 @@
       icon="key"
       iconInput="visibility_off"
       type="password"
-      [isValid]="isValid"
+      [isValid]="passIsValid"
+      (pressEnter)="submit()"
     ></app-input-text>
   </form>
-    <p class="forgot">Esqueci a senha</p>
+  <span class="wrong-pass" *ngIf="wrongPass">Usuário ou senha incorretos!</span>
+    <p class="forgot" (click)="forgot()">Esqueci a senha</p>
     <div class="btns">
       <app-button
       text = "Entrar"

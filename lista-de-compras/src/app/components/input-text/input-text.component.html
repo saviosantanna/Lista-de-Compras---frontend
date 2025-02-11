@@ -8,7 +8,9 @@
           name="{{name}}"
           placeholder="{{ placeholder }}"
           [ngClass]="[name == 'password' ? 'input-password': '', !isValid ? 'invalidInput' : '']"
-          (input)="input($event)"
+          [value]="value"
+          (input)="onInput($event)"
+          (keypress)="keyPress($event)"
         />
         <mat-icon class="icon-input" *ngIf="iconInput" (click)="changeVisibility()">{{
           iconInput

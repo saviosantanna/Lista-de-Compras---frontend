@@ -1,6 +1,7 @@
 <section class="container">
   <img src="../../../assets/shopping-list-2.png" alt="" />
   <h2>Bem-vindo(a)</h2>
+  <p class="text-info">Preencha os dados para se registrar:</p>
   <form [formGroup]="formRegister">
     <app-input-text
       label="Usuário"
@@ -48,17 +49,19 @@
       iconInput="visibility_off"
       type="password"
       [isValid]=passwordIsValid
+      (pressEnter)="register()"
     ></app-input-text>
 
       <p *ngIf="!userIsValid">- Usuário inválido, deve conter no mínimo 4 caracteres.</p>
       <p *ngIf="!nameIsValid">- Nome inválido, deve conter no mínimo 4 caracteres.</p>
       <p *ngIf="!emailIsValid">- Email inválido.</p>
       <p *ngIf="!passwordIsValid">- A senha deve ter pelo menos 6 caracteres, possuir letra maiúscula, letra minúscula, número e caractere especial.</p>
-      <p *ngIf="!passwordIsDifferent">- As senhas digitadas são diferentes.</p>
+      <p *ngIf="!passwordIsEquals">- As senhas digitadas são diferentes.</p>
       <p *ngIf="formIsValid">Cadastro realizado com sucesso!</p>
 
   </form>
   <div class="btns">
+    <!-- <button (click)="clearForm()">limpa</button> -->
     <app-button text="Registrar" btnClass="primary" (click)="register()"> </app-button>
     <app-button text="Voltar" btnClass="secondary" (click)="voltar()"> </app-button>
   </div>
