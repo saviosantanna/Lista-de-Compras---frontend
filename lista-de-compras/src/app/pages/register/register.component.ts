@@ -1,14 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InputTextComponent } from '../../components/input-text/input-text.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { SpinnerService } from '../../services/spinner/spinner.service';
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../services/auth/auth.service';
 import { Register } from '../../interfaces/register';
 
@@ -21,7 +18,7 @@ type statusTypes = 'success' | 'error';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   formRegister!: FormGroup;
 
   constructor(
@@ -48,6 +45,12 @@ export class RegisterComponent {
   formIsValid: boolean = false;
   limpa: boolean = false;
   registerUser!: Register;
+
+  ngOnInit(){
+    if(localStorage.getItem("token")){
+      this.router.navigate(["home"]);
+    }
+  }
 
   clearForm(){
     this.formRegister.reset();

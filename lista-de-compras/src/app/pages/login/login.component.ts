@@ -1,6 +1,5 @@
-import { Overlay } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { InputTextComponent } from '../../components/input-text/input-text.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import {
@@ -12,7 +11,7 @@ import {
 import { SpinnerService } from '../../services/spinner/spinner.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { ToastrService, ActiveToast } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 
 type statusTypes = 'success' | 'error';
@@ -30,7 +29,7 @@ type statusTypes = 'success' | 'error';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
 
   constructor(
@@ -56,6 +55,12 @@ export class LoginComponent {
     progressAnimation: 'decreasing',
   };
 
+  ngOnInit(){
+    if(localStorage.getItem("token")){
+      this.router.navigate(["home"]);
+    }
+  }
+
   register() {
     this.router.navigate(['register']);
   }
@@ -80,12 +85,14 @@ export class LoginComponent {
           this.formLogin.controls['password'].value
         )
         .subscribe((res) => {
+          console.log(res);
           this.toast[res.status as statusTypes](res.response, '', {
             timeOut: 2000,
             onActivateTick: false,
             progressBar: true,
             progressAnimation: 'decreasing',
           });
+          localStorage.setItem("token", res.token)
           Overlay.dispose();
           res.status == 'success' ? this.router.navigate(['home']) : false;
         });

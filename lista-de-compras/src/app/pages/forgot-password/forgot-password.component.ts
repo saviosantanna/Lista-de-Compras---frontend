@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../components/button/button.component';
 import { InputTextComponent } from '../../components/input-text/input-text.component';
@@ -25,7 +25,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss',
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent implements OnInit {
   formForgot!: FormGroup;
   constructor(
     private router: Router,
@@ -43,6 +43,12 @@ export class ForgotPasswordComponent {
   userIsValid: boolean = true;
   emailIsValid: boolean = true;
   wrong: boolean = false;
+
+  ngOnInit(){
+    if(localStorage.getItem("token")){
+      this.router.navigate(["home"]);
+    }
+  }
 
   register() {
     this.router.navigate(['register']);
