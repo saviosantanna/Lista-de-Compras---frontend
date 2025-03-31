@@ -1,7 +1,8 @@
+import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EnvironmentInjector, EnvironmentProviders, Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Register } from '../../interfaces/register';
 
 @Injectable({
@@ -10,9 +11,9 @@ import { Register } from '../../interfaces/register';
 })
 export class AuthService {
 
-
   // apiUrl: string = "http://localhost:8080/";
-  apiUrl: string = "http://192.168.100.16:8080/";
+  // apiUrl: string = "http://192.168.100.16:8080/";
+  apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient

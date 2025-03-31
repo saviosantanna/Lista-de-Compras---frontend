@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  name: "Produção"
+  name: "Produção",
+  apiUrl: "http://producao/"
 };
