@@ -72,5 +72,4 @@ jobs:
         with:
           app-name: 'fe-shopping-list'
           slot-name: 'Production'
-          package: ./lista-de-compras/dist/lista-de-compras
-          
+          package: ./lista-de-compras/dist/lista-de-compras/browser          
