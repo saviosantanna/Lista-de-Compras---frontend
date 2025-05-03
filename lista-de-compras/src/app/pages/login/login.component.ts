@@ -92,9 +92,12 @@ export class LoginComponent implements OnInit {
             progressBar: true,
             progressAnimation: 'decreasing',
           });
-          localStorage.setItem("token", res.token)
+
           Overlay.dispose();
-          res.status == 'success' ? this.router.navigate(['home']) : false;
+          if (res.status == 'success') {
+            localStorage.setItem("token", res.token);
+            this.router.navigate(['home']);
+          }
         });
     }
   }
