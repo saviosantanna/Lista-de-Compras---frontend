@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   name: "Produção",
-  apiUrl: "http://producao/"
+  apiUrl: "https://be-shopping-list.azurewebsites.net/"
 };
