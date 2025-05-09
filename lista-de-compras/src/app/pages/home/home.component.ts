@@ -37,4 +37,10 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+
+  sair(){
+    localStorage.clear();
+    this.router.navigate(['login']);
+    this.toast.info('Você saiu do sistema.');
+  }
 }
